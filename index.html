@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seacv - Jasa CV Termurah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: left;
+      align-items: left;
+      padding: 10px 15px;
+      background-color: #1c0a3f;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo h1 {
+      color: #fff;
+      font-size: 24px; /* Adjusted for smaller screens */
+    }
+
+    /* Banner Section with Slider */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* Dot Navigation */
+    .dot-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px; /* Adjusted for smaller screens */
+      height: 8px; /* Adjusted for smaller screens */
+      margin: 0 3px; /* Adjusted for smaller screens */
+      border-radius: 50%;
+      background-color: #bbb;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #1c0a3f;
+    }
+
+    /* Product Section */
+    .products {
+      padding: 10px 10px 30px; /* Adjusted for smaller screens */
+      text-align: center;
+    }
+
+    .products h2 {
+      font-size: 24px; /* Adjusted for smaller screens */
+      font-weight: 700;
+      margin-bottom: 20px; /* Adjusted for smaller screens */
+      color: #222;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 10px; /* Adjusted for smaller screens */
+      margin-bottom: 20px; /* Adjusted for smaller screens */
+      flex-wrap: wrap;
+    }
+
+    .categories button {
+      padding: 8px 15px; /* Adjusted for smaller screens */
+      border: none;
+      background-color: #e9ecef;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px; /* Adjusted for smaller screens */
+      border-radius: 25px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .categories button:hover {
+      background-color: #1c0a3f;
+      color: #fff;
+    }
+
+    .categories button.active {
+      background-color: #1c0a3f;
+      color: #fff;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjusted for smaller screens */
+      gap: 15px; /* Adjusted for smaller screens */
+      padding: 0 5px; /* Adjusted for smaller screens */
+    }
+
+    .product-card {
+      background-color: #fff;
+      padding: 15px; /* Adjusted for smaller screens */
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: none; /* Hidden by default */
+      min-height: 300px; /* Adjusted for smaller screens */
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-card.active {
+      display: flex; /* Show products that match the category */
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: 150px; /* Adjusted for smaller screens */
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 10px; /* Adjusted for smaller screens */
+    }
+
+    .product-card h3 {
+      margin: 10px 0;
+      font-size: 16px; /* Adjusted for smaller screens */
+      font-weight: 600;
+      color: #222;
+    }
+
+    .price-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px; /* Adjusted for smaller screens */
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+
+    .price-discount {
+      text-decoration: line-through;
+      color: #666;
+      font-weight: 500;
+      font-size: 12px; /* Adjusted for smaller screens */
+    }
+
+    .price-new {
+      color: #1c0a3f;
+      font-weight: 600;
+      font-size: 14px; /* Adjusted for smaller screens */
+    }
+
+    .chat-sales-btn {
+      display: inline-block;
+      padding: 8px 15px; /* Adjusted for smaller screens */
+      background-color: #1c0a3f;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px; /* Adjusted for smaller screens */
+      font-weight: 500;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
+      align-self: center;
+      margin-top: auto;
+    }
+
+    .chat-sales-btn:hover {
+      background-color: #520be0;
+    }
+
+    .new-label {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: #1c0a3f;
+      color: #fff;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 20px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px; /* Adjusted for smaller screens */
+      background-color: #222;
+      color: #fff;
+      font-size: 12px; /* Adjusted for smaller screens */
+      font-weight: 400;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%; /* Adjusted for better responsiveness */
+      max-height: 90%; /* Adjusted for better responsiveness */
+      opacity: 0.8; /* Set opacity for transparency */
+      transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <h1>SEACV</h1>
+    </div>
+  </header>
+
+  <!-- Banner Section with Slider -->
+  <section class="banner">
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <img class="slide" src="banner/banner01.svg" alt="Banner 1">
+        <img class="slide" src="banner/banner02.svg" alt="Banner 2">
+        <img class="slide" src="banner/banner03.svg" alt="Banner 3">
+        <img class="slide" src="banner/banner04.svg" alt="Banner 4">
+      </div>
+    </div>
+    <div class="dot-container">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+      <span class="dot" data-index="3"></span>
+    </div>
+  </section>
+
+  <!-- Product Section -->
+  <section class="products">
+    <h2>Mau Beli Dokumen Mana?</h2>
+    <div class="categories">
+      <button class="category-btn active" data-category="kreatif">CV Kreatif</button>
+      <button class="category-btn" data-category="ats">CV ATS</button>
+      <button class="category-btn" data-category="surat">Surat Lamaran Kerja</button>
+      <button class="category-btn" data-category="portfolio">Portfolio</button>
+    </div>
+    <div class="product-grid">
+      <!-- Kreatif Products -->
+      <div class="product-card kreatif">
+        <img src="produk/cv12.png" alt="cv12">
+        <h3>CV 12</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 12" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card kreatif">
+        <img src="produk/cv11.png" alt="cv11">
+        <h3>CV 11</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 11" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card kreatif">
+        <img src="produk/cv10.png" alt="cv10">
+        <h3>CV 10</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 10" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv09.png" alt="cv09">
+        <h3>CV 09</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 09" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv08.png" alt="cv08">
+        <h3>CV 08</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 08" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv07.png" alt="cv07">
+        <h3>CV 07</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 07" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv06.png" alt="cv06">
+        <h3>CV 06</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 06" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv05.png" alt="cv05">
+        <h3>CV 05</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 05" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv04.png" alt="cv04">
+        <h3>CV 04</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 04" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv03.png" alt="cv03">
+        <h3>CV 03</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 03" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv02.png" alt="cv02">
+        <h3>CV 02</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 02" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <div class="product-card kreatif">
+        <img src="produk/cv01.png" alt="cv01">
+        <h3>CV 01</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="CV 01" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <!-- ats Products -->
+      <div class="product-card ats">
+        <img src="produk/ats06.png" alt="ats06">
+        <h3>ATS 06</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="ATS 06" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card ats">
+        <img src="produk/ats05.png" alt="ats05">
+        <h3>ATS 05</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="ATS 05" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card ats">
+        <img src="produk/ats04.png" alt="ats04">
+        <h3>ATS 04</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="ATS 04" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card ats">
+        <img src="produk/ats03.png" alt="ats03">
+        <h3>ATS 03</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="ATS 03" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card ats">
+        <img src="produk/ats02.png" alt="ats02">
+        <h3>ATS 02</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="ATS 02" target="_blank">Pesan Sekarang</a>
+      </div>
+      <div class="product-card ats">
+        <img src="produk/ats01.png" alt="ats01">
+        <h3>ATS 01</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6289603017744" class="chat-sales-btn" data-product="ATS 01" target="_blank">Pesan Sekarang</a>
+      </div>
+
+      <!-- surat Products -->
+
+      <div class="product-card surat">
+        <img src="produk/slk02.png" alt="slk02">
+        <h3>Surat Lamaran Kerja 02</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6281528458722" class="chat-sales-btn" data-product="SLK 02" target="_blank">Chat Sales</a>
+      </div>
+
+      <div class="product-card surat">
+        <img src="produk/slk01.png" alt="slk01">
+        <h3>Surat Lamaran Kerja 01</h3>
+        <div class="price-container">
+          <span class="price-discount">Rp 25.000</span>
+          <span class="price-new">Rp 10.000</span>
+        </div>
+        <a href="https://wa.me/+6281528458722" class="chat-sales-btn" data-product="SLK 01" target="_blank">Chat Sales</a>
+      </div>
+      <!-- portfolio Products -->
+      <div class="product-card portfolio">
+        <h3>Produk Belum Tersedia</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for Image Preview -->
+  <div id="imageModal" class="modal">
+    <span class="close" id="closeModal">&times;</span>
+    <img class="modal-content" id="modalImage" alt="Modal Image">
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Seacv. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for Banner Slider, Category Filtering, and WhatsApp Chat -->
+  <script>
+    // Image Modal Functionality
+    const productImages = document.querySelectorAll('.product-card img');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeModal = document.getElementById('closeModal');
+
+    productImages.forEach(image => {
+      image.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImage.src = image.src; // Set the modal image source to the clicked image
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none'; // Close the modal
+    });
+
+    // Close modal when clicking outside of the image
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Banner Slider
+    const sliderWrapper = document.querySelector('.slider-wrapper');
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let index = 0;
+
+    function updateSlide() {
+      sliderWrapper.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+
+    setInterval(() => {
+      index = (index + 1) % slides.length;
+      updateSlide();
+    }, 5000);
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        index = parseInt(dot.getAttribute('data-index'));
+        updateSlide();
+      });
+    });
+
+    // Category Filtering
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    function showCategory(category) {
+      productCards.forEach(card => {
+        if (card.classList.contains(category)) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    categoryButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const selectedCategory = button.getAttribute('data-category');
+        showCategory(selectedCategory);
+      });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      showCategory('kreatif');
+    });
+
+    // WhatsApp Chat Customization
+    const chatButtons = document.querySelectorAll('.chat-sales-btn');
+    const phoneNumber = '+6289603017744';
+
+    chatButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
+        const productName = button.getAttribute('data-product');
+        const message = encodeURIComponent(`Halo, saya ingin memesan ${productName}.`);
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+        window.open(whatsappURL, '_blank'); // Open WhatsApp in a new tab
+      });
+    });
+  </script>
+</body>
+</html>
