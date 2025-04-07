@@ -257,6 +257,38 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .highlight-instagram {
+  display: flex;
+  justify-content: center; /* Tengahin secara horizontal */
+  gap: 20px; /* Jarak antar highlight */
+  margin: 20px 0;
+  flex-wrap: wrap; /* Biar responsif kalau layar kecil */
+}
+
+.highlight-instagram a {
+  text-decoration: none;
+  color: #1c0a3f;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.highlight-instagram a:hover {
+  transform: scale(1.05);
+}
+
+.highlight-instagram img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #fb01ff;
+  margin-bottom: 8px;
+}
+
+
   </style>
 </head>
 <body>
@@ -284,6 +316,23 @@
       <span class="dot" data-index="2"></span>
       <span class="dot" data-index="3"></span>
     </div>
+
+    <!-- Instagram Highlight -->
+    <div class="highlight-instagram">
+      <a href="https://www.instagram.com/stories/highlights/18139118194383104/" target="_blank">
+        <img src="banner/kreatif.png" alt="Highlight 2">
+        <div>CV Kreatif</div>
+      </a>
+      <a href="https://www.instagram.com/stories/highlights/18129698794412010/" target="_blank">
+        <img src="banner/testimoni.png" alt="Highlight 1">
+        <div>Testimoni</div>
+      </a>
+      <a href="https://www.instagram.com/stories/highlights/18160281691346527/" target="_blank">
+        <img src="banner/ats.png" alt="Highlight 3">
+        <div>CV ATS</div>
+      </a>
+    </div>
+
   </section>
 
   <!-- Product Section -->
